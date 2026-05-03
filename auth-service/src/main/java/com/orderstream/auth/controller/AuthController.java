@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class AuthController {
-	
+	//added by Suraj
 
     private final AuthService authService;
     private final AuthService authService;
