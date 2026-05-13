@@ -17,22 +17,38 @@ public class JwtUtil {
     }
 
     public String generateToken(String username) {
+
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 86400000))
+                .setExpiration(
+                        new Date(System.currentTimeMillis() + 1000 * 60 * 60)
+                )
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
     public String extractUsername(String token) {
-        return getClaims(token).getSubject();
+
+        return Jwts.parserBuilder()
+                .setSigningKey(getSigningKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
     }
 
     public boolean validateToken(String token) {
+
         try {
-            getClaims(token);
+
+            Jwts.parserBuilder()
+                    .setSigningKey(getSigningKey())
+                    .build()
+                    .parseClaimsJws(token);
+
             return true;
+
         } catch (Exception e) {
             return false;
         }

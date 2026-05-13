@@ -10,7 +10,7 @@ import com.orderstream.auth.service.AuthService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class AuthController {
@@ -22,8 +22,8 @@ public class AuthController {
 	    this.authService = authService;
 	}
 
-    @PostMapping("/login")
-    public LoginResponse login(@RequestBody LoginRequest request) {
+	@PostMapping(value = "/login", produces = "application/json")
+	public LoginResponse login(@RequestBody LoginRequest request) {
     	logger.info("Received login request for user: {}", request.getUsername());
 
         String token = authService.login(
@@ -32,5 +32,9 @@ public class AuthController {
         );
         logger.info("Token generated for user: {}", request.getUsername());
         return new LoginResponse(token);
+    }
+	@GetMapping("/test")
+    public String test() {
+        return "JWT Protected API Working";
     }
 }
