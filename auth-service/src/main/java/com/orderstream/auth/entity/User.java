@@ -13,7 +13,7 @@ public class User {
     private String username;
     private String password;
 
-    // ✅ GETTERS
+ 
     public String getUsername() {
         return username;
     }
@@ -22,7 +22,6 @@ public class User {
         return password;
     }
 
-    // ✅ SETTERS
     public void setUsername(String username) {
         this.username = username;
     }
