@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.orderstream.auth.dto.LoginRequest;
 import com.orderstream.auth.dto.LoginResponse;
+import com.orderstream.auth.dto.RegisterRequest;
+import com.orderstream.auth.dto.RegisterResponse;
 import com.orderstream.auth.service.AuthService;
 
 import lombok.RequiredArgsConstructor;
@@ -37,4 +39,10 @@ public class AuthController {
     public String test() {
         return "JWT Protected API Working";
     }
+	@PostMapping(value="/register",produces="application/json")
+	public RegisterResponse RegisterUser(@RequestBody RegisterRequest request) {
+		
+		
+	}
+	
 }
